@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" xlmns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width-device, initial-scale=1.0">
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+<title>Agenda API - Cadastro de usuário </title>
+<link rel="stylesheet" href="css/login.css">
+<script src="https://kit.fontaresome.com/006642858d.js"></script>
+
+
+</head>
+
+<body>
+
+	<div class="Login-Form">
+		<div class="container">
+			<div class="main-div">
+				<div class="texto-header">
+					<h1> Cadastro de Usuário</h1>
+					<p> Crie seu usuário no sistema. </p>
+				</div>
+				
+				<form method="post" th:object="${user}" th:action="@{saveUser}">
+					<div class="form-group">
+						<input type="email" class="form-control" th:field="*{email}" placeholder="E-mail">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" th:field="*{username}"placeholder="Nome de usuário">
+					</div>
+					
+					<div class="form-group">
+						<input type="password" class="form-control" th:field="*{password}" placeholder="Crie uma senha">
+					</div>
+					<button type="submit" class="btn btn-primary">Cadastrar</button>
+				</form>
+				
+							
+			
+				
+				
+				
+				
+
+	</div>
+<script src="webjars/jquery/3.5.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
