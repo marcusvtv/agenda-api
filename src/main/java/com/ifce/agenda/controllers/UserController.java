@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ifce.agenda.exceptions.ServiceExc;
+import com.ifce.agenda.models.Contact;
 import com.ifce.agenda.models.User;
-
-
+import com.ifce.agenda.repository.ContactBookRepository;
+import com.ifce.agenda.repository.ContactRepository;
 import com.ifce.agenda.service.ServiceUser;
 
 @Controller
@@ -21,6 +22,12 @@ public class UserController {
 	
 	@Autowired
 	private ServiceUser serviceUser;
+	
+	@Autowired 
+	ContactRepository contactRepository;
+	
+	@Autowired 
+	ContactBookRepository contactBookRepository;
 	
 	
 	@GetMapping("/")
@@ -34,23 +41,17 @@ public class UserController {
 	@GetMapping("/index")
 	public ModelAndView index(User user, HttpSession session) {
 		ModelAndView mv= new ModelAndView();
+		
 		if (session.getAttribute("userLogado")==null) {
-			System.out.println("cheguei aqui para direcionar ao login");
 			mv.setViewName("redirect:/");
 			return mv;
 		}
 		else {
-		User user2 = (User) session.getAttribute("userLogado");
-		System.out.println("---------- Debug --------------");
-		System.out.println("                               ");
-		System.out.println(session.getAttribute("userLogado").toString());
-		System.out.println(user2.getEmail());
-		System.out.println(user2.getUsername());
-		
-		System.out.println("                               ");
-		System.out.println("---------- Debug --------------");
-		mv.setViewName("home/index");
-		return mv;
+			Contact novoContato = new Contact(null,"Giselle","982000556","Fortaleza", null);
+			user.getContactBook().insertContact(novoContato);
+			contactBookRepository.save(user.getContactBook());
+			mv.setViewName("home/index");
+			return mv;
 		}
 	}
 	
