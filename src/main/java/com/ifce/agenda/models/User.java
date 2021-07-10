@@ -2,10 +2,13 @@ package com.ifce.agenda.models;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
@@ -22,6 +25,11 @@ public class User {
 	private String username;
 	private String password;
 	private String name;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "contact_book_id")
+	private ContactBook contactBook = new ContactBook();
+	
 	public Integer getId() {
 		return id;
 	}
@@ -51,6 +59,13 @@ public class User {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public ContactBook getContactBook() {
+		return contactBook;
+	}
+	public void setContactBook(ContactBook contactBook) {
+		this.contactBook = contactBook;
 	}
 	@Override
 	public int hashCode() {
