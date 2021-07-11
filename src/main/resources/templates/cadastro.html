@@ -5,31 +5,106 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width-device, initial-scale=1.0">
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/cadastro.css">
+	<script src="https://kit.fontawesome.com/006642858d.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Lato|Noto+Sans+JP|Open+Sans|Roboto&display=swap" rel="stylesheet">
 	<title>Agenda API - Cadastro de Contato </title>
 </head>
 
 <body>
-	<div class="navbar justify-content-end" id="nav1">
-						<ul class="navbar nav">
-			<li class="nav-item"><a th:href="@{/index}" class="nav-link active"><i class="fas fa-home"></i> HOME</a></li>
+	<header>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<nav class="navbar navbar-light navbar-expand-lg" style="background-color: #7ea0b7">
+						<a th:href="@{/index}" class="navbar-brand"> <span class="title">AGENDA-API</span></a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav1">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse justify-content-end" id="nav1">
+							<ul class="navbar nav">
+								<li class="nav-item"><a th:href="@{/index}" class="nav-link"><i
+											class="fas fa-home"></i> HOME</a></li>
 
-			<li class="nav-item"><a th:href="@{/cadastro}" style="color: #6F1E51" class="nav-link"><i
-						class="fas fa-user-graduate"></i> CADASTRAR CONTATO</a></li>
+								<li class="nav-item"><a th:href="@{/cadastro}" style="color: #36494e"
+										class="nav-link"><i class="fas fa-address-book"></i> CADASTRAR CONTATO</a></li>
 
-			<li class="nav-item"><a th:href="@{search}" class="nav-link"><i class="fas fa-search"></i> PESQUISAR
-					CONTATO</a></li>
+								<li class="nav-item"><a th:href="@{search}" class="nav-link"><i
+											class="fas fa-search"></i> PESQUISAR
+										CONTATO</a></li>
 
-			<li class="nav-item">
-				<form th:action="@{/logout}" method="post">
-					<button type="submit"
-						style="width: 100px; padding: 5px; border-radius: 5px; border: 2px solid #8e44ad;"
-						class="botao btn nav-link" id="close"><i class="fas fa-times"></i> SAIR</button>
-				</form>
-			</li>
-		</ul>
+								<li class="nav-item">
+									<form th:action="@{/logout}" method="post">
+										<button type="submit"
+											style="width: 100px; padding: 5px; border-radius: 5px; border: 2px solid #8e44ad;"
+											class="botao btn nav-link" id="close"><i class="fas fa-times"></i>
+											SAIR</button>
+									</form>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	<div class="containerAux">
+		<h2 class="mt-4">CADASTRO DE CONTATO</h2>
+		<hr class="colorgraph">
+		<form method="post" th:action=@{/cadastrocompleto}
+			th:object="${contact}">
+			<div class="row">
+				<div class="col-lg-12">
+					<!-- ALERTA DE ERRO AO ENVIAR O OBJETO -->
+					<!-- ALERTA DE DADOS ENVIADO COM SUCESSO -->
+					<div id="alerta"
+						class="alert alert-success alert-dismissible fade show"
+						th:if="${!#strings.isEmpty(cadastroenviado)}">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Fechar">
+							<span>&times;</span>
+						</button>
+						<strong>CONTATO SALVO COM SUCESSO! <a th:href="@{/}">VOLTAR</a>.
+						</strong>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-lg-5 col-sm-12">
+					<label class="lbl" for="inputNome">Nome:</label> <input type="text"
+						maxlength="70" th:field="*{name}"
+						placeholder="Exemplo: João Victor Ferreira" id="inputNome"
+						class="form-control">
+				</div>
+		</div>
+			<hr class="colorgraph">
+			<div class="row">
+				<div class="form-group col-lg-6 col-sm-12">
+					<label class="lbl" for="inputTel1">Telefone:</label> <input
+						type="tel" maxlength="14" th:field="*{telephone}"
+						onkeypress="mascara(this, '## # ####-####')"
+						placeholder="Exemplo: (00) 9 0101-1010" id="inputTel1"
+						class="form-control"> <small style="color: #d63031">*Preferencialmente
+						Whatsapp</small>
+				</div>
+				<div class="form-group col-lg-6 col-sm-12">
+					<label class="lbl" for="inputCity">Cidade:</label> <input
+						type="tel" maxlength="14" th:field="*{city}"
+						placeholder="Cidade"
+						class="form-control"> 
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-lg-4 offset-lg-4  mt-4">
+					<button class="bt col-sm-12">SALVAR INFORMAÇÕES</button>
+				</div>
+			</div>
+		</form>
 	</div>
 
-	
+
 
 	<script src="webjars/jquery/3.5.1/jquery.min.js"></script>
 	<script src="webjars/bootstrap/js/bootstrap.min.js"></script>
