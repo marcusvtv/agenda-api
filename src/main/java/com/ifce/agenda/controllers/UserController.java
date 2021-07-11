@@ -61,6 +61,7 @@ public class UserController {
 			userLogin = this.serviceUser.loginUser(user.getUsername(), user.getPassword());
 			session.setAttribute("userLogado", userLogin);
 			session.getAttribute("userLogado");
+			System.out.println(userLogin.getEmail()+" "+userLogin.getId()+" "+userLogin.getContactBook().getId());
 		} catch (ServiceExc e) {
 			mv.addObject("msgLoginErro", e.getMessage());
 			mv.setViewName("Login/login");

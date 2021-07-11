@@ -1,6 +1,7 @@
 package com.ifce.agenda.service;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,7 +18,10 @@ import com.ifce.agenda.util.Util;
 
 @Service
 public class ServiceUser {
-
+	
+	@Autowired
+	HttpSession session;
+		
 	@Autowired
 	private UserRepository userRepository;
 
@@ -32,6 +36,17 @@ public class ServiceUser {
 		 */
 		userRepository.save(user);
 
+	}
+	
+	public User getLoggedUser(HttpSession session) {
+		Integer userId = ((User) session.getAttribute("userLogado")).getId();
+		return userRepository.findUserById(userId);
+		
+	}
+	
+	public User loggedUser(HttpSession session) {
+		return (User) session.getAttribute("userLogado");
+		
 	}
 
 	public User loginUser(String username, String password) throws ServiceExc {

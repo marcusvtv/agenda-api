@@ -97,7 +97,7 @@ footer.rodape p {
 	padding: 7px;
 	transition: 0.5s;
 }
-.bt:hover{color: #fff; background: #8e44ad;}
+.bt:hover{color: #fff; background: #a9cef4;}
 
 /* Responsividade */
 @media screen and(max-width: 798px) {

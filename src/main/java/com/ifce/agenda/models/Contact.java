@@ -1,9 +1,13 @@
 package com.ifce.agenda.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Contact {
@@ -14,6 +18,10 @@ public class Contact {
 	private String name;
 	private String telephone;
 	private String city;
+	
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "contact_book_id")
+	private ContactBook contactBook;
 
 	public Integer getId() {
 		return id;
@@ -47,6 +55,14 @@ public class Contact {
 		this.city = city;
 	}
 
+	public ContactBook getContactBook() {
+		return contactBook;
+	}
+
+	public void setContactBook(ContactBook contactBook) {
+		this.contactBook = contactBook;
+	}
+
 	public Contact() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -58,5 +74,9 @@ public class Contact {
 		this.telephone = telephone;
 		this.city = city;
 	}
+	
+	
+	
+	
 
 }
