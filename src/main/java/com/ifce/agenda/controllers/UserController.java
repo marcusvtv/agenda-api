@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ifce.agenda.exceptions.ServiceExc;
+import com.ifce.agenda.models.Contact;
 import com.ifce.agenda.models.User;
-
 import com.ifce.agenda.service.ServiceUser;
 
 @Controller
