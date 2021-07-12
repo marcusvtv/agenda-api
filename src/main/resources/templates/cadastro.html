@@ -18,26 +18,26 @@
 				<div class="col-12">
 					<nav class="navbar navbar-light navbar-expand-lg" style="background-color: #7ea0b7">
 						<a th:href="@{/index}" class="navbar-brand"> <span class="title">AGENDA-API</span></a>
-						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#nav1">
-							<span class="navbar-toggle-icon"></span>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav1" aria-controls="nav1" aria-expanded="false" aria-label="Alterna navegação">
+							<span class="navbar-toggler-icon"></span>
 						</button>
 						<div class="collapse navbar-collapse justify-content-end" id="nav1">
 							<ul class="navbar nav">
-								<li class="nav-item"><a th:href="@{/index}" class="nav-link"><i
-											class="fas fa-home"></i> HOME</a></li>
+								<li class="nav-item"><a th:href="@{/index}" class="nav-link " style="color: #36494e" ><i
+										class="fas fa-home"></i> HOME</a></li>
 
-								<li class="nav-item"><a th:href="@{/cadastro}" style="color: #36494e"
-										class="nav-link"><i class="fas fa-address-book"></i> CADASTRAR CONTATO</a></li>
+								<li class="nav-item"><a th:href="@{/cadastro}"
+														class="nav-link"><i class="fas fa-address-book"></i> CADASTRAR CONTATO</a></li>
 
 								<li class="nav-item"><a th:href="@{search}" class="nav-link"><i
-											class="fas fa-search"></i> PESQUISAR
-										CONTATO</a></li>
+										class="fas fa-search"></i> PESQUISAR
+									CONTATO</a></li>
 
 								<li class="nav-item">
 									<form th:action="@{/logout}" method="post">
 										<button type="submit"
-											style="width: 100px; padding: 5px; border-radius: 5px; border: 2px solid #8e44ad;"
-											class="botao btn nav-link" id="close"><i class="fas fa-times"></i>
+												style="width: 100px; padding: 5px; border-radius: 5px; border: 2px solid #8e44ad;"
+												class="botao btn nav-link" id="close"><i class="fas fa-times"></i>
 											SAIR</button>
 									</form>
 								</li>
