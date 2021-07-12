@@ -49,7 +49,7 @@ public class UserController {
 	}
 
 	@PostMapping("saveUser")
-	public ModelAndView cadastrar(User user)  {
+	public ModelAndView cadastrarUsuario(User user)  {
 		ModelAndView mv = new ModelAndView();
 		userRepository.save(user);
 		mv.setViewName("Login/login");
