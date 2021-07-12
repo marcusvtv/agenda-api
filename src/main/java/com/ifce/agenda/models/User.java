@@ -28,7 +28,7 @@ public class User {
 	private String name;
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "contactbook_id")
+	@JoinColumn(name = "contact_book_id")
 	private ContactBook contactBook = new ContactBook();
 	
 	public Integer getId() {
