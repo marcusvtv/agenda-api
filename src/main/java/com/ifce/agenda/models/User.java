@@ -89,10 +89,15 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.name = username;
+		this.contactBook =  new ContactBook();
 	}
 	public User() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	
 	
 	
 
