@@ -30,7 +30,7 @@ public class UserAgendaController {
 	public ModelAndView login() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("Login/login");
-		mv.addObject("user", new UserAgenda());
+		mv.addObject("userAgenda", new UserAgenda());
 		return mv;
 	}
 
@@ -42,7 +42,7 @@ public class UserAgendaController {
 	@GetMapping("/cadastro-usuario")
 	public ModelAndView cadastrar() {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("user", new UserAgenda());
+		mv.addObject("userAgenda", new UserAgenda());
 		mv.setViewName("Login/cadastro-usuario");
 		return mv;
 	}
@@ -58,7 +58,7 @@ public class UserAgendaController {
 	@PostMapping("/index")
 	public ModelAndView login(@ModelAttribute UserAgenda userAgenda) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("user", new UserAgenda());
+		mv.addObject("userAgenda", new UserAgenda());
 		UserAgenda userAgendaLogin;
 		try {
 			userAgendaLogin = this.serviceUserAgenda.loginUser(userAgenda.getUsername(), userAgenda.getPassword());
