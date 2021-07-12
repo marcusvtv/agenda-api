@@ -48,7 +48,7 @@ public class UserController {
 	public ModelAndView cadastrar(User user) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		serviceUser.saveUser(user);
-		mv.setViewName("redirect:/");
+		mv.setViewName("Login/login");
 		return mv;
 	}
 
