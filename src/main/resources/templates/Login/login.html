@@ -21,7 +21,7 @@
 					<p> Insira suas credenciais para efetuar login no sistema. </p>
 				</div>
 				
-				<form th:object="${user}" action="/index" method="post">
+				<form th:object="${userAgenda}" action="/index" method="post">
 
 				<div class="alert alert-danger" role="alert" th:if="${msgLoginErro}">
 					<strong th:text="${msgLoginErro}"></strong>

@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 
 
 @Entity
-public class User {
+public class UserAgenda {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -80,10 +80,10 @@ public class User {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		UserAgenda other = (UserAgenda) obj;
 		return Objects.equals(id, other.id);
 	}
-	public User(String email, String username, String password) {
+	public UserAgenda(String email, String username, String password) {
 		super();
 		this.email = email;
 		this.username = username;
@@ -91,7 +91,7 @@ public class User {
 		this.name = username;
 		this.contactBook =  new ContactBook();
 	}
-	public User() {
+	public UserAgenda() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

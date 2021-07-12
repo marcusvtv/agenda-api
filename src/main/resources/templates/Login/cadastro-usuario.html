@@ -21,7 +21,7 @@
 					<p> Crie seu usuário no sistema. </p>
 				</div>
 				
-				<form method="post" th:object="${user}" th:action="@{saveUser}">
+				<form method="post" th:object="${userAgenda}" th:action="@{saveUser}">
 					<div class="form-group">
 						<input type="email" class="form-control" th:field="*{email}" placeholder="E-mail">
 					</div>

@@ -1,23 +1,17 @@
 package com.ifce.agenda.service;
 
-import java.security.NoSuchAlgorithmException;
-import java.util.Optional;
-
 import javax.servlet.http.HttpSession;
 
+import com.ifce.agenda.models.UserAgenda;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ifce.agenda.exceptions.CriptoExistException;
-import com.ifce.agenda.exceptions.EmailExistsException;
 import com.ifce.agenda.exceptions.ServiceExc;
-import com.ifce.agenda.models.User;
 import com.ifce.agenda.repository.UserRepository;
-import com.ifce.agenda.util.Util;
 
 @Service
-public class ServiceUser {
+public class ServiceUserAgenda {
 	
 	@Autowired
 	HttpSession session;
@@ -25,7 +19,7 @@ public class ServiceUser {
 	@Autowired
 	private UserRepository userRepository;
 
-	public void saveUser(User user) throws Exception {
+	public void saveUser(UserAgenda userAgenda) throws Exception {
 		/*
 		 * try { // if(userRepository.findByEmail() != null) { // throw new
 		 * EmailExistsException("Já existe um email cadastrado para: "+
@@ -34,27 +28,27 @@ public class ServiceUser {
 		 * (NoSuchAlgorithmException e) { throw new
 		 * CriptoExistException("Erro na criptografia da senha"); }
 		 */
-		userRepository.save(user);
+		userRepository.save(userAgenda);
 
 	}
 	
-	public User getLoggedUser(HttpSession session) {
-		Integer userId = ((User) session.getAttribute("userLogado")).getId();
+	public UserAgenda getLoggedUser(HttpSession session) {
+		Integer userId = ((UserAgenda) session.getAttribute("userLogado")).getId();
 		return userRepository.findUserById(userId);
 		
 	}
 	
-	public User loggedUser(HttpSession session) {
-		return (User) session.getAttribute("userLogado");
+	public UserAgenda loggedUser(HttpSession session) {
+		return (UserAgenda) session.getAttribute("userLogado");
 		
 	}
 
-	public User loginUser(String username, String password) throws ServiceExc {
-		User userLogin = this.userRepository.findLogin(username, password);
-		if (userLogin == null) {
+	public UserAgenda loginUser(String username, String password) throws ServiceExc {
+		UserAgenda userAgendaLogin = this.userRepository.findLogin(username, password);
+		if (userAgendaLogin == null) {
 			throw new ServiceExc("Usuário ou senha inválidos!");
 		}
-		return userLogin;
+		return userAgendaLogin;
 	}
 
 	public ModelAndView loggedUserTester(HttpSession session, String destinoSucesso) {

@@ -7,10 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.ifce.agenda.models.Contact;
 import com.ifce.agenda.models.ContactBook;
-import com.ifce.agenda.models.User;
-import com.ifce.agenda.repository.ContactBookRepository;
+import com.ifce.agenda.models.UserAgenda;
 import com.ifce.agenda.repository.ContactRepository;
-import com.ifce.agenda.repository.UserRepository;
 
 @Service
 public class ServiceContact {
@@ -19,15 +17,15 @@ public class ServiceContact {
 	HttpSession session;
 	
 	@Autowired
-	private ServiceUser serviceUser;
+	private ServiceUserAgenda serviceUserAgenda;
 	
 	@Autowired
 	private ContactRepository contactRepository;
 	
 	public void saveContact(Contact contact) throws Exception {
 		
-		User user = serviceUser.loggedUser(session);
-		ContactBook contactBook = user.getContactBook();
+		UserAgenda userAgenda = serviceUserAgenda.loggedUser(session);
+		ContactBook contactBook = userAgenda.getContactBook();
 		contact.setContactBook(contactBook);
 		
 		
