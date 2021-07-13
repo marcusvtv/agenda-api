@@ -61,6 +61,7 @@ public class ContactBook {
 	}
 	
 	public void insertContact(Contact contact) {
+		contact.setContactBook(this);
 		this.contact.add(contact);
 	}
 
