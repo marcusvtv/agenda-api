@@ -3,6 +3,7 @@ package com.ifce.agenda.controllers;
 import javax.servlet.http.HttpSession;
 
 import com.ifce.agenda.models.Contact;
+import com.ifce.agenda.models.ContactBook;
 import com.ifce.agenda.models.UserAgenda;
 import com.ifce.agenda.repository.UserRepository;
 import com.ifce.agenda.service.ServiceContact;
@@ -77,7 +78,13 @@ public class UserAgendaController {
 		String sortDir = "asc";
 
 
-		Page<Contact> page = serviceContact.findPaginated(pageNo, pageSize, sortField, sortDir);
+		/*Page<Contact> page = serviceContact.findPaginated(pageNo, pageSize, sortField, sortDir);
+		List<Contact> listContact = page.getContent();*/
+
+		UserAgenda userAgenda = serviceUserAgenda.getLoggedUser(session);
+		ContactBook contactBook = userAgenda.getContactBook();
+
+		Page<Contact> page = contactBook.getContactPaged(pageNo, pageSize, sortField, sortDir);
 		List<Contact> listContact = page.getContent();
 
 		mv.addObject("currentPage", pageNo);
@@ -91,8 +98,6 @@ public class UserAgendaController {
 		return mv;
 
 	}
-
-
 
 	@GetMapping("/cadastro-usuario")
 	public ModelAndView cadastrar() {

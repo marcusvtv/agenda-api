@@ -1,5 +1,7 @@
 package com.ifce.agenda.models;
 
+import org.springframework.data.domain.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,6 +63,17 @@ public class ContactBook {
 	public void insertContact(Contact contact) {
 		this.contact.add(contact);
 	}
-	
+
+	public Page<Contact> getContactPaged(Integer pageNo, Integer pageSize, String sortField, String sortDirection) {
+		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+				Sort.by(sortField).descending();
+
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+		final int start = (int)pageable.getOffset();
+		final int end = Math.min((start + pageable.getPageSize()), contact.size());
+		final Page<Contact> page = new PageImpl<>(contact.subList(start, end), pageable, contact.size());
+
+		return page;
+	}
 
 }
