@@ -52,6 +52,11 @@ public class ServiceContact {
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
 		return this.contactRepository.findAll(pageable);
 	}
-	
 
+
+	public void deleteContactById(Integer id) {
+
+
+
+	}
 }

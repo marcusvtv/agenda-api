@@ -7,14 +7,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class ContactBook {
@@ -23,8 +16,8 @@ public class ContactBook {
 	private Integer id;
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	List<Contact> contact = new ArrayList<Contact>();
+	@OneToMany(mappedBy="contactBook", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	private List<Contact> contact = new ArrayList<Contact>();
 
 	public Integer getId() {
 		return id;
@@ -93,6 +86,10 @@ public class ContactBook {
 		final int end = Math.min((start + pageable.getPageSize()), contactFound.size());
 		final Page<Contact> page = new PageImpl<>(contactFound.subList(start, end), pageable, contact.size());
 		return page;
+	}
+
+	public boolean deleteContactByID(Integer id){
+		return contact.removeIf(c -> c.getId().equals(id));
 	}
 
 }

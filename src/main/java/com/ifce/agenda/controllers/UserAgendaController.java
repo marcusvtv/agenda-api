@@ -99,33 +99,7 @@ public class UserAgendaController {
 		return mv;
 	}
 
-/*
 
-	@GetMapping("/search-contact/{name}/{pageNo}")
-	public ModelAndView searchByName(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "") String name) {
-		ModelAndView mv = new ModelAndView();
-		int pageSize = 100;
-
-		String sortField = "name";
-		String sortDir = "asc";
-
-		UserAgenda userAgenda = serviceUserAgenda.getLoggedUser(session);
-		ContactBook contactBook = userAgenda.getContactBook();
-
-		Page<Contact> page = contactBook.searchPagedContactsByName(name,pageNo, pageSize, sortField, sortDir);
-		List<Contact> listContact = page.getContent();
-
-		mv.addObject("currentPage", pageNo);
-		mv.addObject("totalPages", page.getTotalPages());
-		mv.addObject("totalItems", page.getTotalElements());
-		mv.addObject("sortField", sortField);
-		mv.addObject("sortDir", sortDir);
-		mv.addObject("listContact", listContact);
-		mv.setViewName("home/index");
-		return mv;
-	}
-
-*/
 
 	@GetMapping("/page/{pageNo}")
 	public ModelAndView findPaginated(@PathVariable(value = "pageNo") int pageNo,ModelAndView mv) {

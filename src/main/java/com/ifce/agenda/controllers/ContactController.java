@@ -55,7 +55,25 @@ public class ContactController {
 		return mv;
 	}
 
+	@GetMapping ("/deleteContact/{id}")
+	public ModelAndView deleteContact(@PathVariable (value = "id") Integer id) {
+		ModelAndView mv = new ModelAndView();
+		if (serviceUserAgenda.loggedUserTester(session)){
+			UserAgenda userAgenda = serviceUserAgenda.getLoggedUser(session);
+			ContactBook contactBook = userAgenda.getContactBook();
+			if (contactBook.deleteContactByID(id)){
+				contactBookRepository.save(contactBook);
+				mv.addObject("contatoapagado", "apagado com sucesso");
 
+			} else{
+				mv.addObject("contatoapagado", "erro ao tentar apagar o contato");
+			}
+			mv.setViewName("home/index");
+		}else{
+			mv.setViewName("redirect:/");
+		}
+		return mv;
+	}
 
 
 

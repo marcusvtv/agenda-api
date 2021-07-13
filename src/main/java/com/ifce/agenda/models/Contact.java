@@ -1,5 +1,8 @@
 package com.ifce.agenda.models;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,12 +18,16 @@ public class Contact {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
 	private String name;
 	private String telephone;
 	private String city;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "contact_book_id")
+	//@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	//@JoinColumn(name = "contact_book_id")
+	@ManyToOne
+	@JoinColumn(name="contact_book_id", nullable=false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private ContactBook contactBook;
 
 	public Integer getId() {
