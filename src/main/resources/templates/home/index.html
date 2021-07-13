@@ -2,58 +2,128 @@
 <html lang="pt-br" xlmns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width-device, initial-scale=1.0">
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/cadastro.css">
-	<script src="https://kit.fontawesome.com/006642858d.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Lato|Noto+Sans+JP|Open+Sans|Roboto&display=swap" rel="stylesheet">
-	<title>Agenda API </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/cadastro.css">
+    <script src="https://kit.fontawesome.com/006642858d.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Noto+Sans+JP|Open+Sans|Roboto&display=swap"
+          rel="stylesheet">
+    <title>Agenda API </title>
 </head>
 
 <body>
-	<header>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-12">
-					<nav class="navbar navbar-light navbar-expand-lg" style="background-color: #7ea0b7">
-						<a th:href="@{/index}" class="navbar-brand"> <span class="title">AGENDA-API</span></a>
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav1" aria-controls="nav1" aria-expanded="false" aria-label="Alterna navegação">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse justify-content-end" id="nav1">
-							<ul class="navbar nav">
-								<li class="nav-item"><a th:href="@{/index}" class="nav-link " style="color: #36494e" ><i
-											class="fas fa-home"></i> HOME</a></li>
+<header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #7ea0b7">
+                    <a th:href="@{/index}" class="navbar-brand"> <span class="title">AGENDA-API</span></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav1"
+                            aria-controls="nav1" aria-expanded="false" aria-label="Alterna navegação">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="nav1">
+                        <ul class="navbar nav">
+                            <li class="nav-item"><a th:href="@{/index}" class="nav-link " style="color: #36494e"><i
+                                    class="fas fa-home"></i> HOME</a></li>
 
-								<li class="nav-item"><a th:href="@{/cadastro}" 
-										class="nav-link"><i class="fas fa-address-book"></i> CADASTRAR CONTATO</a></li>
+                            <li class="nav-item"><a th:href="@{/cadastro}"
+                                                    class="nav-link"><i class="fas fa-address-book"></i> CADASTRAR
+                                CONTATO</a></li>
 
-								<li class="nav-item"><a th:href="@{search}" class="nav-link"><i
-											class="fas fa-search"></i> PESQUISAR
-										CONTATO</a></li>
+                            <li class="nav-item"><a th:href="@{search}" class="nav-link"><i
+                                    class="fas fa-search"></i> PESQUISAR
+                                CONTATO</a></li>
 
-								<li class="nav-item">
-									<form th:action="@{/logout}" method="post">
-										<button type="submit"
-											style="width: 100px; padding: 5px; border-radius: 5px; border: 2px solid #8e44ad;"
-											class="botao btn nav-link" id="close"><i class="fas fa-times"></i>
-											SAIR</button>
-									</form>
-								</li>
-							</ul>
-						</div>
-					</nav>
-				</div>
-			</div>
-		</div>
-	</header>
+                            <li class="nav-item">
+                                <form th:action="@{/logout}" method="post">
+                                    <button type="submit"
+                                            style="width: 100px; padding: 5px; border-radius: 5px; border: 2px solid #8e44ad;"
+                                            class="botao btn nav-link" id="close"><i class="fas fa-times"></i>
+                                        SAIR
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container my-2">
+    <h1>Lista de Contatos</h1>
+
+    <a th:href="@{/cadastro}" class="btn btn-primary btn-sm mb-3"> Acrescentar Contato </a>
+
+    <table border="1" class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>
+                <a href="#"> Nome</a>
+            </th>
+            <th>
+                <a href="#">Telefone</a>
+            </th>
+            <th>
+                <a href="#"> Cidade</a>
+            </th>
+            <th> Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="contact : ${listContact}">
+            <td th:text="${contact.name}"></td>
+            <td th:text="${contact.telephone}"></td>
+            <td th:text="${contact.city}"></td>
+            <td><a href="#" class="btn btn-primary">Editar</a>
+                <a href="#" class="btn btn-danger">Apagar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:if="${totalPages > 1}">
+        <div class="row col-sm-10">
+            <div class="col-sm-2">
+                Número de Contatos: [[${totalItems}]]
+            </div>
+            <div class="col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}"
+                           th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+            </div>
+            <div class="col-sm-1">
+                <a th:if="${currentPage < totalPages}"
+                   th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+                <span th:unless="${currentPage < totalPages}">Next</span>
+            </div>
+
+            <div class="col-sm-1">
+                <a th:if="${currentPage < totalPages}"
+                   th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+                <span th:unless="${currentPage < totalPages}">Last</span>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

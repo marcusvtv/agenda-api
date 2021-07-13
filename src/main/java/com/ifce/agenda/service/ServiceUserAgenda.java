@@ -51,7 +51,15 @@ public class ServiceUserAgenda {
 		return userAgendaLogin;
 	}
 
-	public ModelAndView loggedUserTester(HttpSession session, String destinoSucesso) {
+	public boolean loggedUserTester(HttpSession session){
+		if (session.getAttribute("userLogado") != null){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public ModelAndView loggedUserTestAndRedirect(HttpSession session, String destinoSucesso) {
 		ModelAndView mv = new ModelAndView();
 		if (session.getAttribute("userLogado") != null) {
 			mv.setViewName(destinoSucesso); // destino caso tenha usuário logado
