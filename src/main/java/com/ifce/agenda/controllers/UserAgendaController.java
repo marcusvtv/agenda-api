@@ -10,10 +10,7 @@ import com.ifce.agenda.service.ServiceContact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ifce.agenda.exceptions.ServiceExc;
@@ -68,6 +65,67 @@ public class UserAgendaController {
 			return mv;
 		}
 	}
+
+	/*@GetMapping("/search-contact-example")
+	public ModelAndView searchAll(@RequestParam(defaultValue = "1") int page) {
+		ModelAndView mv = new ModelAndView("search-all");
+		mv.addObject("aluno", new Aluno());
+		Pageable pagreq = PageRequest.of(page - 1, 6, Sort.by("nome"));
+		Page<Aluno> paginaResult = this.alunoservice.allAlunos(pagreq);
+		mv.addObject("allAlunos", paginaResult);
+		return mv;
+	}*/
+
+	@RequestMapping(value="/search-contact", method=RequestMethod.GET)
+	public ModelAndView searchByName(@RequestParam("name") String name) {
+		ModelAndView mv = new ModelAndView();
+		int pageSize = 100;
+		Integer pageNo = 1;
+		String sortField = "name";
+		String sortDir = "asc";
+		UserAgenda userAgenda = serviceUserAgenda.getLoggedUser(session);
+		ContactBook contactBook = userAgenda.getContactBook();
+
+		Page<Contact> page = contactBook.searchPagedContactsByName(name,pageNo, pageSize, sortField, sortDir);
+		List<Contact> listContact = page.getContent();
+
+		mv.addObject("currentPage", pageNo);
+		mv.addObject("totalPages", page.getTotalPages());
+		mv.addObject("totalItems", page.getTotalElements());
+		mv.addObject("sortField", sortField);
+		mv.addObject("sortDir", sortDir);
+		mv.addObject("listContact", listContact);
+		mv.setViewName("home/index");
+		return mv;
+	}
+
+/*
+
+	@GetMapping("/search-contact/{name}/{pageNo}")
+	public ModelAndView searchByName(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "") String name) {
+		ModelAndView mv = new ModelAndView();
+		int pageSize = 100;
+
+		String sortField = "name";
+		String sortDir = "asc";
+
+		UserAgenda userAgenda = serviceUserAgenda.getLoggedUser(session);
+		ContactBook contactBook = userAgenda.getContactBook();
+
+		Page<Contact> page = contactBook.searchPagedContactsByName(name,pageNo, pageSize, sortField, sortDir);
+		List<Contact> listContact = page.getContent();
+
+		mv.addObject("currentPage", pageNo);
+		mv.addObject("totalPages", page.getTotalPages());
+		mv.addObject("totalItems", page.getTotalElements());
+		mv.addObject("sortField", sortField);
+		mv.addObject("sortDir", sortDir);
+		mv.addObject("listContact", listContact);
+		mv.setViewName("home/index");
+		return mv;
+	}
+
+*/
 
 	@GetMapping("/page/{pageNo}")
 	public ModelAndView findPaginated(@PathVariable(value = "pageNo") int pageNo,ModelAndView mv) {

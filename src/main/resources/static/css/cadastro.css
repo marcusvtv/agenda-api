@@ -33,6 +33,10 @@ body{
 	clear: both;
 }
 
+.fa-font-color{
+	color: #e8f1f2;
+}
+
 .title {
 	font-size: 1.3em;
 	color: #fff;
@@ -55,6 +59,7 @@ body{
 }
 
 #close {
+	text-align: center;
 	color: #fff;
 }
 
@@ -64,6 +69,13 @@ body{
 	color: #d63031;
 }
 
+#formLogout{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+}
 
 footer.rodape {
 	background-color: #8e44ad;

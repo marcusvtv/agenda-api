@@ -7,6 +7,9 @@ import com.ifce.agenda.models.Contact;
 
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Integer>{
+
+//    @Query("select c from Contact c where UPPER(c.name) like UPPER(CONCAT('%', :name, '%')) and c.contact order by c.name")
+//    public List<Contact> findByNameContainingIgnoreCase(String name);
 	
 	
 

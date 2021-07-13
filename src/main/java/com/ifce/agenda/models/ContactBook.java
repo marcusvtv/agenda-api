@@ -4,6 +4,8 @@ import org.springframework.data.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -74,6 +76,22 @@ public class ContactBook {
 		final int end = Math.min((start + pageable.getPageSize()), contact.size());
 		final Page<Contact> page = new PageImpl<>(contact.subList(start, end), pageable, contact.size());
 
+		return page;
+	}
+
+	public Page<Contact> searchPagedContactsByName(String searchedName, Integer pageNo, Integer pageSize, String sortField, String sortDirection){
+		List<Contact> contactFound = (List<Contact>) this.contact
+				.stream()
+				.filter(c -> c.getName().toUpperCase().contains(searchedName.toUpperCase()))
+				.collect(Collectors.toList());
+
+		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+				Sort.by(sortField).descending();
+
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+		final int start = (int)pageable.getOffset();
+		final int end = Math.min((start + pageable.getPageSize()), contactFound.size());
+		final Page<Contact> page = new PageImpl<>(contactFound.subList(start, end), pageable, contact.size());
 		return page;
 	}
 
