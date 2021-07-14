@@ -42,7 +42,7 @@ link para as telas no Figma: https://www.figma.com/proto/5m08vL4EPkaEdT9n9abN3l/
 
 a. Desenvolver os casos de uso do sistema. 
 
-                                                                  Caso de uso-Agenda
+                                                         Caso de uso-Agenda
 
 ![Caso de uso](https://user-images.githubusercontent.com/23100493/125636586-a6c7ae36-9772-4265-91d9-68863b826a5b.jpeg)
 
@@ -50,7 +50,7 @@ b. Elaborar diagramas de sequência para os casos de uso mais importantes. Aqui 
 – Busca de um contato 
 – Adição de um novo grupo de contato 
 
-                                                          Diagrama de sequência- Adiciona Novo contato
+                                                Diagrama de sequência- Adiciona Novo contato
 
 ![sequence-diagram_adiciona_novocontato-3](https://user-images.githubusercontent.com/23100493/125648560-adcb4b45-e316-47f7-97d7-60e2eef21b45.jpeg)
 
