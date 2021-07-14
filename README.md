@@ -17,6 +17,11 @@ Equipe: Bruno Oliveira,
 
 
 
+Link para acesso à Aplicação : https://ifce-agenda-api.herokuapp.com
+
+
+
+
 1) Casos de uso
 
 
@@ -50,17 +55,17 @@ b. Elaborar diagramas de sequência para os casos de uso mais importantes. Aqui 
 – Busca de um contato 
 – Adição de um novo grupo de contato 
 
-                                                Diagrama de sequência- Adiciona Novo contato
+                                              Diagrama de sequência- Adiciona Novo contato
 
 ![sequence-diagram_adiciona_novocontato-3](https://user-images.githubusercontent.com/23100493/125648560-adcb4b45-e316-47f7-97d7-60e2eef21b45.jpeg)
 
 
-                                                          Diagrama de sequência- Busca Contato
+                                               Diagrama de sequência- Busca Contato
 
 ![sequence-diagram_Busca_contato-2](https://user-images.githubusercontent.com/23100493/125649315-346240bd-e040-498c-9469-78b9e0ae9cf8.jpeg)
 
 
-                                                          Diagrama de sequência- Cadastro
+                                                Diagrama de sequência- Cadastro
 
 ![sequence-diagram_cadastro-1](https://user-images.githubusercontent.com/23100493/125648567-28a8dcaf-47c4-4749-a9db-868d73a50f35.jpeg)
 
@@ -157,6 +162,9 @@ Para organização geral das atribuiçoes da equipe utilizados o software Trello
 
 
 
+
+
+Link para acesso à Aplicação : https://ifce-agenda-api.herokuapp.com
 
 
 
