@@ -138,7 +138,9 @@ Fazer uso dos seguintes design patterns no seu código:
 
 
 
-Ferramentas utilizadas na prototipação do projeto
+                                     
+                                     Ferramentas utilizadas na prototipação do projeto
+
 
 Para confecção das telas foi utilizado o software web Figma, desenvolvido pela empresa Figma Organization. Para confecção dos Diagramas e casos de uso foi utilizado o softwre
 Genmymodel, deenvolvido pela Axellience. Para o desenvolvimento do software Agenda foi feito com um framework Spring Boot, na linguagem Java.
@@ -147,7 +149,7 @@ Para organização geral das atribuiçoes da equipe utilizados o software Trello
 
 
 
-                                                                 Organização das atribuições-Trello
+                                              Organização das atribuições-Trello
 
 ![Trello_metodologiaAgil](https://user-images.githubusercontent.com/23100493/125702966-ca4e0749-f240-4e47-bd0f-4d5b670234bb.png)
 
